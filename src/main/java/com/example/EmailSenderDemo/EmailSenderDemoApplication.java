@@ -7,8 +7,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+import java.util.Random;
+
 @SpringBootApplication
 public class EmailSenderDemoApplication {
+
+	public static String getRandomNumberString() {
+		// It will generate 6 digit random Number.
+		// from 0 to 999999
+		Random rnd = new Random();
+		int number = rnd.nextInt(999999);
+
+		// this will convert any number sequence into 6 character.
+		return String.format("%06d", number);
+	}
 
 	@Autowired
 	public EmailSenderService service;
@@ -27,7 +39,7 @@ public class EmailSenderDemoApplication {
 						"\n" +
 						"Please use the One Time Password (OTP) below on KF COMM 2 Repligen login portal. This OTP is valid for 30 minutes only.\n" +
 						"\n" +
-						"392614\n" +
+						getRandomNumberString()+"\n" +
 						"\n" +
 						"Thanks!\n" +
 						"\n" +
